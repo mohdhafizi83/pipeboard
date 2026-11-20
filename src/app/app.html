@@ -1,0 +1,16 @@
+<header>
+  <h1>{{ title }}</h1>
+  <p class="tagline">Pipeline job registry &amp; run console - Angular + FastAPI</p>
+  @if (offline()) {
+    <p class="offline">API offline - start it with <code>uvicorn app.main:app --port 8000</code> in <code>backend/</code></p>
+  }
+</header>
+<main>
+  <div class="left">
+    <app-job-form (created)="onCreate($event)" />
+    <app-job-list [jobs]="jobs()" (run)="onRun($event)" (remove)="onRemove($event)" />
+  </div>
+  <div class="right">
+    <app-run-list [runs]="runs()" />
+  </div>
+</main>
